@@ -59,6 +59,17 @@ module.exports = (css) ->
 		aPxValue *= emToPxRatio if a.unit is 'em'
 		bPxValue *= emToPxRatio if b.unit is 'em'
 		bPxValue - aPxValue # descending
+  intervalRules.sort (a, b) ->
+    aMinValue = a.minWidth
+    bMinValue = b.minWidth
+    aMaxValue = a.maxWidth
+    bMaxValue = b.maxWidth
+    aMinValue *= emToPxRatio if a.unit is 'em'
+    bMinValue *= emToPxRatio if b.unit is 'em'
+    if aMinValue == bMinValue
+      bMaxValue - aMaxValue
+    else
+      bMinValue - aMinValue # descending
 
 	# modify parsed AST
 	parsed.stylesheet.rules = rootRules
