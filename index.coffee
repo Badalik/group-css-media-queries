@@ -57,19 +57,19 @@ module.exports = (css) ->
 
   emToPxRatio = 16 # 1em = 16px
 
-	# sort media rules
-	onlyMinRules.sort (a, b) ->
-		aPxValue = a.minWidth
-		bPxValue = b.minWidth
-		aPxValue *= emToPxRatio if a.unit is 'em'
-		bPxValue *= emToPxRatio if b.unit is 'em'
-		aPxValue - bPxValue # ascending
-	onlyMaxRules.sort (a, b) ->
-		aPxValue = a.maxWidth
-		bPxValue = b.maxWidth
-		aPxValue *= emToPxRatio if a.unit is 'em'
-		bPxValue *= emToPxRatio if b.unit is 'em'
-		bPxValue - aPxValue # descending
+  # sort media rules
+  onlyMinRules.sort (a, b) ->
+    aPxValue = a.minWidth
+    bPxValue = b.minWidth
+    aPxValue *= emToPxRatio if a.unit is 'em'
+    bPxValue *= emToPxRatio if b.unit is 'em'
+    aPxValue - bPxValue # ascending
+  onlyMaxRules.sort (a, b) ->
+    aPxValue = a.maxWidth
+    bPxValue = b.maxWidth
+    aPxValue *= emToPxRatio if a.unit is 'em'
+    bPxValue *= emToPxRatio if b.unit is 'em'
+    bPxValue - aPxValue # descending
   intervalRules.sort (a, b) ->
     aMinValue = a.minWidth
     bMinValue = b.minWidth

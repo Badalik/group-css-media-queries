@@ -108,25 +108,25 @@
       if (b.unit === 'em') {
         bPxValue *= emToPxRatio;
       }
-      bPxValue - aPxValue;
-      return intervalRules.sort(function(a, b) {
-        var aMaxValue, aMinValue, bMaxValue, bMinValue;
-        aMinValue = a.minWidth;
-        bMinValue = b.minWidth;
-        aMaxValue = a.maxWidth;
-        bMaxValue = b.maxWidth;
-        if (a.unit === 'em') {
-          aMinValue *= emToPxRatio;
-        }
-        if (b.unit === 'em') {
-          bMinValue *= emToPxRatio;
-        }
-        if (aMinValue === bMinValue) {
-          return bMaxValue - aMaxValue;
-        } else {
-          return bMinValue - aMinValue;
-        }
-      });
+      return bPxValue - aPxValue;
+    });
+    intervalRules.sort(function(a, b) {
+      var aMaxValue, aMinValue, bMaxValue, bMinValue;
+      aMinValue = a.minWidth;
+      bMinValue = b.minWidth;
+      aMaxValue = a.maxWidth;
+      bMaxValue = b.maxWidth;
+      if (a.unit === 'em') {
+        aMinValue *= emToPxRatio;
+      }
+      if (b.unit === 'em') {
+        bMinValue *= emToPxRatio;
+      }
+      if (aMinValue === bMinValue) {
+        return bMaxValue - aMaxValue;
+      } else {
+        return bMinValue - aMinValue;
+      }
     });
     parsed.stylesheet.rules = rootRules.concat(onlyMinRules).concat(onlyMaxRules).concat(intervalRules).concat(combinedRules).concat(otherRules);
     return stringifyCss(parsed);
